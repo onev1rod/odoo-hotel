@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="hotel_menu_root" name="Hotel - OV" sequence="0"
+              web_icon="ov_hotel,static/description/icon.png"/>
+
+    <menuitem id="hotel_config_menu" name="Configuration" sequence="11"
+              parent="hotel_menu_root"/>
+
+</odoo>

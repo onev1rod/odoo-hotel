@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="hotel_room_view_tree" model="ir.ui.view">
+        <field name="name">hotel.room.view.tree</field>
+        <field name="model">hotel.room</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="name"/>
+                <field name="room_type"/>
+                <field name="rent_by_day"/>
+                <field name="rent_by_hour"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hotel_room_view_form" model="ir.ui.view">
+        <field name="name">hotel.room.view.form</field>
+        <field name="model">hotel.room</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <label for="name" string="Room"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="image_room" widget="image" class="oe_avatar" string=""/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Information" name="information">
+                            <group>
+                                <group>
+                                    <field name="room_type"/>
+                                    <field name="number_of_persons"/>
+                                </group>
+                                <group>
+                                    <field name="rent_by_day"/>
+                                    <field name="rent_by_hour"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Amenities" name="amenities">
+                            <group>
+                                <field name="room_amenities_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--     Hotel Room Action Window -->
+    <record id="hotel_room_action" model="ir.actions.act_window">
+        <field name="name">Hotel Room</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hotel.room</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!--     Hotel Room Menu -->
+    <menuitem id="hotel_room_menu" name="Room" sequence="10"
+              parent="hotel_config_menu"
+              action="hotel_room_action"/>
+</odoo>
