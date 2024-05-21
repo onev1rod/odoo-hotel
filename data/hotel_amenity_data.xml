@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hotel_amenity_tv" model="hotel.amenity">
+        <field name="name">Cable/satellite television</field>
+        <field name="color">1</field>
+    </record>
+    <record id="hotel_amenity_wifi" model="hotel.amenity">
+        <field name="name">Free Wi-Fi</field>
+        <field name="color">7</field>
+    </record>
+    <record id="hotel_amenity_refrigerator" model="hotel.amenity">
+        <field name="name">Mini Refrigerator</field>
+        <field name="color">3</field>
+    </record>
+    <record id="hotel_amenity_hairdryer" model="hotel.amenity">
+        <field name="name">Hairdryer</field>
+        <field name="color">10</field>
+    </record>
+    <record id="hotel_amenity_bathSlip" model="hotel.amenity">
+        <field name="name">Bathrobe and slippers</field>
+        <field name="color">2</field>
+    </record>
+    <record id="hotel_amenity_bathtub" model="hotel.amenity">
+        <field name="name">Bathtub</field>
+        <field name="color">4</field>
+    </record>
+    <record id="hotel_amenity_seaView" model="hotel.amenity">
+        <field name="name">Sea View</field>
+        <field name="color">8</field>
+    </record>
+</odoo>

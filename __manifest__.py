@@ -1,6 +1,7 @@
 {
     'name': 'Hotel management - OV',
     'description': 'Manage rooms booking',
+    'summary': 'Hotel Management, Hotel, Room Booking Odoo, Amenities, Rooms, Booking',
     'author': 'onev1rod',
     'version': '17.0.1.0.1',
     'category': 'Industries',
@@ -9,6 +10,8 @@
     'data': [
         'security/ir.model.access.csv',
         'data/ir_data_sequence.xml',
+        'data/hotel_amenity_data.xml',
+        'wizard/cancel_room_booking_views.xml',
         'views/menu.xml',
         'views/room_booking_views.xml',
         'views/hotel_room_views.xml',

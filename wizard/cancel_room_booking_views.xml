@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="cancel_room_booking_view_form" model="ir.ui.view">
+        <field name="name">cancel.room.booking.view.form</field>
+        <field name="model">cancel.room.booking.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="room_booking_id" invisible="1"/>
+                        <field name="reason"/>
+                    </group>
+                    <group>
+                        <field name="date_cancel"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_cancel" string="Cancel Room Booking" type="object" class="btn-primary"
+                            data-hotkey="q"/>
+                    <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="cancel_room_booking_action" model="ir.actions.act_window">
+        <field name="name">Cancel Room Booking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cancel.room.booking.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

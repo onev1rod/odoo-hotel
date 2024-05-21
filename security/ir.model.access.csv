@@ -5,3 +5,4 @@ access.hotel.room,access_hotel_room,ov_hotel.model_hotel_room,base.group_user,1,
 access.hotel.amenity,access_hotel_amenity,ov_hotel.model_hotel_amenity,base.group_user,1,1,1,1
 access.hotel.service,access_hotel_service,ov_hotel.model_hotel_service,base.group_user,1,1,1,1
 access.service.booking.line,access_service_booking_line,ov_hotel.model_service_booking_line,base.group_user,1,1,1,1
+access.cancel.room.booking.wizard,access_cancel_room_booking_wizard,ov_hotel.model_cancel_room_booking_wizard,base.group_user,1,1,1,1

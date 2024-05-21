@@ -9,3 +9,4 @@ class HotelAmenity(models.Model):
     image_amenity = fields.Image(string="Image")
     description = fields.Html(string="About",
                               help="Specify the amenity description")
+    color = fields.Integer(string="Color")

@@ -9,6 +9,7 @@ class RoomBooking(models.Model):
     _name = "room.booking"
     _description = "Hotel Room Reservation"
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = "id desc"
 
     name = fields.Char(string="Name", readonly=True, default=lambda self: _('New'))
     partner_id = fields.Many2one('res.partner', string="Customer",
@@ -35,6 +36,8 @@ class RoomBooking(models.Model):
                                             string="Room Booking Line")
     service_booking_line_ids = fields.One2many("service.booking.line","room_booking_id",
                                             string="Service Booking Line")
+
+    # Override Create Method to generate sequential values
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -46,15 +49,6 @@ class RoomBooking(models.Model):
         if not self.need_service and self.service_booking_line_ids:
             for serv in self.service_booking_line_ids:
                 serv.unlink()
-
-    # @api.onchange('need_food')
-    # def _onchange_need_food(self):
-    #     if not self.need_food:
-    #         self.unlink()
-
-
-
-
 
     def action_reserve(self):
         for record in self:
@@ -72,9 +66,9 @@ class RoomBooking(models.Model):
         for rec in self:
             rec.state = 'done'
 
-    def action_cancel(self):
-        for rec in self:
-            rec.state = 'cancel'
+    # def action_cancel(self):
+    #     for rec in self:
+    #         rec.state = 'cancel'
 
     def action_draft(self):
         for rec in self:

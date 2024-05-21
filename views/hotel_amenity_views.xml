@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree sample="1">
                 <field name="name"/>
+                <field name="color" widget="color_picker"/>
             </tree>
         </field>
     </record>
@@ -21,6 +22,7 @@
                         <group>
                             <field name="name"/>
                             <field name="description"/>
+                            <field name="color" widget="color_picker"/>
                         </group>
                         <group>
                             <field name="image_amenity" widget="image" class="oe_avatar" string=""/>

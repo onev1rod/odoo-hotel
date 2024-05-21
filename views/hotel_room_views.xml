@@ -46,7 +46,7 @@
                         </page>
                         <page string="Amenities" name="amenities">
                             <group>
-                                <field name="room_amenities_ids" widget="many2many_tags"/>
+                                <field name="room_amenities_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             </group>
                         </page>
                     </notebook>

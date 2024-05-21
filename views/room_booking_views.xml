@@ -6,7 +6,7 @@
         <field name="name">room.booking.view.tree</field>
         <field name="model">room.booking</field>
         <field name="arch" type="xml">
-            <tree decoration-warning="state == 'reserved'" decoration-success="state == 'done'" sample="1">
+            <tree decoration-warning="state == 'reserved'" decoration-success="state == 'done'" sample="1" default_order="create_date desc">
                 <field name="name" string="Folio Number"/>
                 <field name="partner_id" widget="many2one_avatar"/>
                 <field name="number_of_persons"/>
@@ -30,17 +30,15 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_reserve" string="Reserved" class="btn-primary"
-                            type="object" invisible="state != 'draft'" data-hotkey="r"/>
                     <button name="action_checkin" string="Check-In" class="btn-primary"
                             type="object" invisible="state in ('check-in','check-out','done','cancel')"/>
                     <button name="action_checkout" string="Check-Out" class="btn-primary"
                             type="object" invisible="state != 'check-in'"/>
                     <button name="action_done" string="Done" class="btn-primary"
                             type="object" invisible="state != 'check-out'"/>
-                    <button name="action_cancel" string="Cancel" class="btn-secondary"
-                            type="object" invisible="state not in ('draft','reserved')"/>
-                    <button name="action_draft" string="Reopen" class="btn-primary"
+                    <button name="%(ov_hotel.cancel_room_booking_action)d" string="Cancel" class="btn-secondary"
+                            type="action" invisible="state not in ('draft','reserved')" context="{'default_reason': 'Test'}"/>
+                    <button name="action_draft" string="Restore" class="btn-primary"
                             type="object" invisible="state != 'cancel'"/>
                     <field name="state" widget="statusbar"
                            statusbar_visible="draft,check-in,check-out,done"/>
@@ -104,6 +102,25 @@
         </field>
     </record>
 
+    <!--     Room Booking Activity View -->
+    <record id="room_booking_view_activity" model="ir.ui.view">
+        <field name="name">room.booking.view.activity</field>
+        <field name="model">room.booking</field>
+        <field name="arch" type="xml">
+            <activity string="Room Booking">
+                <field name="name"/>
+                <templates>
+                    <div t-name="activity-box">
+                        <img t-att-src="activity_image('room.booking', record.name.raw_value)" t-att-title="record.name.value" t-att-alt="record.name.value"/>
+                        <div class="ms-2">
+                            <field name="name" display="full" class="o_text_block"/>
+                        </div>
+                    </div>
+                </templates>
+            </activity>
+        </field>
+    </record>
+
     <!--     Room Booking Search -->
     <record id="room_booking_view_search" model="ir.ui.view">
         <field name="name">room.booking.view.search</field>
@@ -112,7 +129,6 @@
             <search>
                 <field name="name" string="Folio Number"/>
                 <field name="order_date"/>
-                <field name="checkin_date"/>
             </search>
         </field>
     </record>
@@ -122,7 +138,7 @@
         <field name="name">Room Booking</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">room.booking</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,activity</field>
         <field name="context">{}</field>
     </record>
 
