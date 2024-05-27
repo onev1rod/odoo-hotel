@@ -30,6 +30,8 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button name="action_reserve" string="Reserve" class="btn-primary"
+                            type="object" invisible="state != 'draft'"/>
                     <button name="action_checkin" string="Check-In" class="btn-primary"
                             type="object" invisible="state in ('check-in','check-out','done','cancel')"/>
                     <button name="action_checkout" string="Check-Out" class="btn-primary"
@@ -79,7 +81,17 @@
                         </page>
                         <page string="Food" name="food"
                               invisible="need_food == False">
-
+                            <field name="product_booking_line_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="uom_qty"/>
+                                    <field name="price_unit"/>
+                                    <field name="price_total"/>
+                                </tree>
+                            </field>
+                            <group colspan="2"
+                                   class="oe_subtotal_footer oe_right">
+                            </group>
                         </page>
                         <page string="Service" name="service"
                               invisible="need_service == False">
@@ -142,9 +154,5 @@
         <field name="context">{}</field>
     </record>
 
-    <!--     Room Booking Menu -->
-    <menuitem id="room_booking_menu" name="Reservation" sequence="10"
-              parent="hotel_menu_root"
-              action="room_booking_action"/>
 
 </odoo>

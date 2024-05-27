@@ -41,7 +41,4 @@
         <field name="context">{}</field>
     </record>
 
-    <menuitem id="hotel_amenity_menu" name="Amenity" sequence="11"
-              parent="hotel_config_menu"
-              action="hotel_amenity_action"/>
 </odoo>

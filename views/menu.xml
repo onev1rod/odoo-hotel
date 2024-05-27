@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <menuitem id="hotel_menu_root" name="Hotel - OV" sequence="0"
-              web_icon="ov_hotel,static/description/icon.png"/>
+    <menuitem id="hotel_menu_root" name="Hotel - OV" sequence="0" web_icon="ov_hotel,static/description/icon.png">
 
-    <menuitem id="hotel_config_menu" name="Configuration" sequence="11"
-              parent="hotel_menu_root"/>
+        <menuitem id="room_booking_menu" name="Booking" sequence="10">
+            <menuitem id="room_reserve_menu" name="Reservation" sequence="10" action="room_booking_action"/>
+            <menuitem id="search_available_room_menu" name="Search Rooms" sequence="10"
+                      action="search_available_room_action"/>
+        </menuitem>
+
+        <menuitem id="hotel_product_menu" name="Products" sequence="10">
+            <menuitem id="hotel_product_template_menu" name="Products" sequence="10"
+                      action="sale.product_template_action"/>
+        </menuitem>
+
+        <menuitem id="hotel_config_menu" name="Configuration" sequence="11">
+            <menuitem id="hotel_service_menu" name="Service" sequence="11"
+                      action="hotel_service_action"/>
+            <menuitem id="hotel_room_menu" name="Room" sequence="10"
+                      action="hotel_room_action"/>
+            <menuitem id="hotel_amenity_menu" name="Amenity" sequence="11"
+                      action="hotel_amenity_action"/>
+        </menuitem>
+
+    </menuitem>
 
 </odoo>

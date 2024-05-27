@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="room_booking_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1 class="text-center mb-5">Room Booking:
+                            <span t-field="doc.name"/>
+                        </h1>
+                        <div class="row mb-5">
+                            <div class="col-6">
+                                <h5>Customer:
+                                    <span t-field="doc.partner_id"/>
+                                </h5>
+                            </div>
+                            <div class="col-6">
+                                <h5>Number of persons:
+                                    <span t-field="doc.number_of_persons"/>
+                                </h5>
+                            </div>
+                        </div>
+                        <!--    Room Booking    -->
+                        <div>
+                            <span class="fw-bold">Room booking:</span>
+                            <table class="table table-striped text-center">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Room</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                    <th>Duration</th>
+                                    <th>Price Unit</th>
+                                    <th>Price Total</th>
+                                </tr>
+                                <t t-foreach="doc.room_booking_line_ids" t-as="rbl">
+                                    <tr>
+                                        <td><span t-esc="rbl_index + 1"/></td>
+                                        <td><p t-esc="rbl.hotel_room_id.name"/></td>
+                                        <td><p t-esc="rbl.checkin_date"/></td>
+                                        <td><p t-esc="rbl.checkout_date"/></td>
+                                        <td><p><span t-esc="rbl.uom_qty"/> <span t-esc="rbl.uom_rent"/></p></td>
+                                        <td><p t-esc="rbl.price_unit"/></td>
+                                        <td><p t-esc="rbl.price_total"/></td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </div>
+                        <!--    Food    -->
+                        <div>
+                            <span class="fw-bold">Food:</span>
+                            <table class="table table-striped text-center">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Food</th>
+                                    <th>Quantity</th>
+                                    <th>Price Unit</th>
+                                    <th>Price Total</th>
+                                </tr>
+                                <t t-foreach="doc.product_booking_line_ids" t-as="pbl">
+                                    <tr>
+                                        <td><span t-esc="pbl_index + 1"/></td>
+                                        <td><p t-esc="pbl.product_id.name"/></td>
+                                        <td><p t-esc="pbl.uom_qty"/></td>
+                                        <td><p t-esc="pbl.price_unit"/></td>
+                                        <td><p t-esc="pbl.price_total"/></td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </div>
+                        <!--    Service     -->
+                        <div>
+                            <span class="fw-bold">Service:</span>
+                            <table class="table table-striped text-center">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Service</th>
+                                    <th>Price</th>
+                                </tr>
+                                <t t-foreach="doc.service_booking_line_ids" t-as="sbl">
+                                    <tr>
+                                        <td><span t-esc="sbl_index + 1"/></td>
+                                        <td><p t-esc="sbl.hotel_service_id.name"/></td>
+                                        <td><p t-esc="sbl.unit_price"/></td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="room_booking_custom_paperformat" model="report.paperformat">
+        <field name="name">Room Booking Custom Paper Format</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="room_booking_report_template_action" model="ir.actions.report">
+        <field name="name">Room Booking</field>
+        <field name="model">room.booking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ov_hotel.room_booking_report_template</field>
+        <field name="report_file">ov_hotel.room_booking_report_template</field>
+        <field name="print_report_name">'Room-Booking'</field>
+        <field name="binding_model_id" ref="ov_hotel.model_room_booking"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="ov_hotel.room_booking_custom_paperformat"/>
+    </record>
+</odoo>
