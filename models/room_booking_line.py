@@ -8,9 +8,7 @@ class RoomBookingLine(models.Model):
     _description = "Hotel Folio Line"
 
     room_booking_id = fields.Many2one("room.booking", string="Room Booking")
-    hotel_room_id = fields.Many2one("hotel.room", string="Room", required=True,
-
-                                    )
+    hotel_room_id = fields.Many2one("hotel.room", string="Room", required=True)
     room_type = fields.Selection(related="hotel_room_id.room_type", string="Room Type")
     checkin_date = fields.Datetime(string="Check In",
                                    help="You can choose the date,"

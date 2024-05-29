@@ -20,6 +20,18 @@
                 <xpath expr="//field[@name='detailed_type']" position="after">
                     <field name="product_type_hotel"/>
                 </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Vehicle" name="vehicle" invisible="product_type_hotel != 'vehicle'">
+                        <group>
+                            <group>
+                                <field name="license_plates"/>
+                            </group>
+                            <group>
+                                <field name="owner"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
             </field>
         </record>
 

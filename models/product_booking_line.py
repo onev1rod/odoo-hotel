@@ -7,7 +7,7 @@ class ProductBookingLine(models.Model):
     _description = "Product Booking Line"
 
     room_booking_id = fields.Many2one("room.booking", string="Room Booking")
-    product_id = fields.Many2one("product.template", string="Product", required=True, domain=[('product_type_hotel', 'in', ('food', 'service'))])
+    product_id = fields.Many2one("product.template", string="Product", required=True, domain=[('product_type_hotel', '=', 'food')])
     uom_qty = fields.Float(string="Quantity", default=1, required=True)
     price_unit = fields.Float(related="product_id.list_price", string="Unit Price")
     price_total = fields.Float(string="Total", compute="_compute_price")

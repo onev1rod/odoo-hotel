@@ -21,6 +21,7 @@ class RoomBooking(models.Model):
     number_of_persons = fields.Integer(string="Number Of Persons", default=1, required=True, tracking=True)
     need_service = fields.Boolean(string="Need Service", default=False, copy=False)
     need_food = fields.Boolean(string="Need Food", default=False, copy=False)
+    need_vehicle = fields.Boolean(string="Need Vehicle", default=False, copy=False)
     state = fields.Selection(selection=[('draft',"Draft"),
                                         ('reserved',"Reserved"),
                                         ('check-in',"Check-In"),
@@ -35,6 +36,8 @@ class RoomBooking(models.Model):
                                                string="Product Booking Line")
     service_booking_line_ids = fields.One2many("service.booking.line","room_booking_id",
                                             string="Service Booking Line")
+    vehicle_booking_line_ids = fields.One2many("vehicle.booking.line", "room_booking_id",
+                                               string="Vehicle Booking Line")
 
 
     # Override Create Method to generate sequential values
@@ -62,6 +65,12 @@ class RoomBooking(models.Model):
             for serv in self.product_booking_line_ids:
                 serv.unlink()
 
+    @api.onchange('need_vehicle')
+    def _onchange_need_food(self):
+        if not self.need_vehicle and self.vehicle_booking_line_ids:
+            for serv in self.vehicle_booking_line_ids:
+                serv.unlink()
+
     # Button type Object
     def action_reserve(self):
         for record in self:
@@ -82,9 +91,3 @@ class RoomBooking(models.Model):
     def action_draft(self):
         for rec in self:
             rec.state = 'draft'
-
-    hotel_room_count = fields.Integer(string="Count", compute="_compute_hotel_room_count")
-
-    def _compute_hotel_room_count(self):
-        for rec in self:
-            rec.hotel_room_count = self.env['hotel.room'].search_count([('room_type', '=', 'single')])

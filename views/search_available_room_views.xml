@@ -39,4 +39,5 @@
         <field name="view_mode">form</field>
         <field name="target">inline</field>
     </record>
+
 </odoo>

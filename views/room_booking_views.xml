@@ -60,7 +60,7 @@
                             <field name="order_date"/>
                             <field name="need_food"/>
                             <field name="need_service"/>
-                            <field name="hotel_room_count"/>
+                            <field name="need_vehicle"/>
                         </group>
                     </group>
                     <notebook>
@@ -98,8 +98,21 @@
                               invisible="need_service == False">
                             <field name="service_booking_line_ids">
                                 <tree editable="bottom">
-                                    <field name="hotel_service_id"/>
-                                    <field name="unit_price"/>
+                                    <field name="service_id"/>
+                                    <field name="uom_qty"/>
+                                    <field name="price_unit"/>
+                                    <field name="price_total"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Vehicle" name="vehicle"
+                              invisible="need_vehicle == False">
+                            <field name="vehicle_booking_line_ids">
+                                <tree editable="bottom">
+                                    <field name="vehicle_id"/>
+                                    <field name="uom_qty"/>
+                                    <field name="price_unit"/>
+                                    <field name="price_total"/>
                                 </tree>
                             </field>
                         </page>
@@ -154,6 +167,5 @@
         <field name="view_mode">tree,form,activity</field>
         <field name="context">{}</field>
     </record>
-
 
 </odoo>
