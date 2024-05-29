@@ -60,6 +60,7 @@
                             <field name="order_date"/>
                             <field name="need_food"/>
                             <field name="need_service"/>
+                            <field name="hotel_room_count"/>
                         </group>
                     </group>
                     <notebook>

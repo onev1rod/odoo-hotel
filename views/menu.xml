@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <menuitem id="hotel_menu_root" name="Hotel - OV" sequence="0" web_icon="ov_hotel,static/description/icon.png">
+    <menuitem id="hotel_menu_root" name="Hotel - OV" web_icon="ov_hotel,static/description/icon.png">
 
         <menuitem id="room_booking_menu" name="Booking" sequence="10">
             <menuitem id="room_reserve_menu" name="Reservation" sequence="10" action="room_booking_action"/>

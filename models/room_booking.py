@@ -36,12 +36,19 @@ class RoomBooking(models.Model):
     service_booking_line_ids = fields.One2many("service.booking.line","room_booking_id",
                                             string="Service Booking Line")
 
+
     # Override Create Method to generate sequential values
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
             vals['name'] = self.env['ir.sequence'].next_by_code('room.booking')
         return super().create(vals_list)
+
+    # Override Unlink Method
+    def unlink(self):
+        if self.state == 'done':
+            raise ValidationError(_("You cannot delete a booking with 'Done' status"))
+        return super().unlink()
 
     @api.onchange('need_service')
     def _onchange_need_service(self):
@@ -55,6 +62,7 @@ class RoomBooking(models.Model):
             for serv in self.product_booking_line_ids:
                 serv.unlink()
 
+    # Button type Object
     def action_reserve(self):
         for record in self:
             record.state = 'reserved'
@@ -74,3 +82,9 @@ class RoomBooking(models.Model):
     def action_draft(self):
         for rec in self:
             rec.state = 'draft'
+
+    hotel_room_count = fields.Integer(string="Count", compute="_compute_hotel_room_count")
+
+    def _compute_hotel_room_count(self):
+        for rec in self:
+            rec.hotel_room_count = self.env['hotel.room'].search_count([('room_type', '=', 'single')])

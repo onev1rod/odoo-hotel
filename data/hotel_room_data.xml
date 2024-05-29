@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hotel_room_P001" model="hotel.room">
+        <field name="name">P001</field>
+        <field name="room_type">single</field>
+        <field name="number_of_persons">2</field>
+        <field name="rent_by_day">10</field>
+        <field name="rent_by_hour">3</field>
+    </record>
+    <record id="hotel_room_P002" model="hotel.room">
+        <field name="name">P002</field>
+        <field name="room_type">double</field>
+        <field name="number_of_persons">4</field>
+        <field name="rent_by_day">20</field>
+        <field name="rent_by_hour">5</field>
+    </record>
+    <record id="hotel_room_P003" model="hotel.room">
+        <field name="name">P003</field>
+        <field name="room_type">dormitory</field>
+        <field name="number_of_persons">6</field>
+        <field name="rent_by_day">30</field>
+        <field name="rent_by_hour">8</field>
+    </record>
+    <record id="hotel_room_P004" model="hotel.room">
+        <field name="name">P004</field>
+        <field name="room_type">single</field>
+        <field name="number_of_persons">2</field>
+        <field name="rent_by_day">10</field>
+        <field name="rent_by_hour">3</field>
+    </record>
+    <record id="hotel_room_P005" model="hotel.room">
+        <field name="name">P005</field>
+        <field name="room_type">double</field>
+        <field name="number_of_persons">4</field>
+        <field name="rent_by_day">20</field>
+        <field name="rent_by_hour">5</field>
+    </record>
+</odoo>

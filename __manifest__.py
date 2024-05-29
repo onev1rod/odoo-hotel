@@ -11,6 +11,7 @@
         'security/ir.model.access.csv',
         'data/ir_data_sequence.xml',
         'data/hotel_amenity_data.xml',
+        'data/hotel_room_data.xml',
         'wizard/cancel_room_booking_views.xml',
         'report/room_booking_report_template.xml',
         'views/menu.xml',
