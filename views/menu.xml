@@ -15,8 +15,6 @@
         </menuitem>
 
         <menuitem id="hotel_config_menu" name="Configuration" sequence="11">
-            <menuitem id="hotel_service_menu" name="Service" sequence="11"
-                      action="hotel_service_action"/>
             <menuitem id="hotel_room_menu" name="Room" sequence="10"
                       action="hotel_room_action"/>
             <menuitem id="hotel_amenity_menu" name="Amenity" sequence="11"

@@ -17,7 +17,6 @@
         'views/room_booking_views.xml',
         'views/hotel_room_views.xml',
         'views/hotel_amenity_views.xml',
-        'views/hotel_service_views.xml',
         'views/product_template_views.xml',
         'views/search_available_room_views.xml',
         'views/menu.xml',
